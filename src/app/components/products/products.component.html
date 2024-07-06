@@ -1,0 +1,77 @@
+<section *ngIf="productsData.length>0" class="py-5">
+  <div class="container-fluid">
+    <div class="input form d-flex justify-content-center align-items-center pb-4 w-25 mx-auto" >
+      <input type="text" class="form-control" placeholder="search..." [(ngModel)]="inputValue">
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let item of productsData | search:inputValue | paginate: { id: 'products',
+      itemsPerPage: pageSize,
+      currentPage: mainPage,
+      totalItems: total }">
+          <div class="card text-start position-relative">
+            <!-- wish list icon -->
+            <div class="wishList position-absolute" *ngIf="wishArray.includes(item._id) else wish">
+              <i class="fa-regular fa-heart fs-3 colorPink" (click)="addToWish(item._id , whiteHeart,redHeart)" hidden #whiteHeart></i>
+              <i class="fa-solid fa-heart fs-3 colorPink"  (click)="removeWish(item._id , whiteHeart ,redHeart)" #redHeart></i>
+            </div>
+            <ng-template #wish>
+              <div class="wishList position-absolute">
+                <i class="fa-regular fa-heart fs-3 colorPink" (click)="addToWish(item._id , whiteHeart,redHeart)" #whiteHeart></i>
+              <i class="fa-solid fa-heart fs-3 colorPink"  (click)="removeWish(item._id , whiteHeart ,redHeart)"hidden #redHeart></i>
+              </div>
+            </ng-template>
+            <!-- //best selling products -->
+            <div class="bestSelling position-absolute d-flex justify-content-center align-items-center" *ngIf="item.ratingsAverage>=4.5">
+              <h4 class="my-0 text-white">best selling</h4>
+            </div>
+            <header [routerLink]="['/productDetails' , item._id]">
+              <img class="card-img-top"[src]="item.imageCover" alt="image"  width="100%"/>
+            <div class="card-body">
+              <h4 class="card-title colorPer">{{item.title|cuttext:2}}</h4>
+              <p class="card-text text-muted">{{item.description | cuttext :3}}</p>
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-6">
+                  <p class="fs-5"> {{item.price | currency: ' '}} EGP</p>
+                </div>
+
+                <!-- rating stars -->
+                <div class="col-md-6 text-warning d-flex justify-content-between align-items-center">
+                  <p><i [class]="(item.ratingsAverage == 0) ? 'far fa-star' : (item.ratingsAverage > 0 && item.ratingsAverage < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
+
+                    <!-- 2 star  -->
+                    <i [class]="(item.ratingsAverage > 1 && item.ratingsAverage < 2) ? 'fas fa-star-half-alt' : (item.ratingsAverage >= 2) ? 'fas fa-star' : 'far fa-star'"></i>
+
+                    <!-- 3 star  -->
+                    <i [class]="(item.ratingsAverage > 2 && item.ratingsAverage < 3) ? 'fas fa-star-half-alt' : (item.ratingsAverage >= 3) ? 'fas fa-star' : 'far fa-star'"></i>
+
+                    <!-- 4 star  -->
+                    <i [class]="(item.ratingsAverage > 3 && item.ratingsAverage < 4) ? 'fas fa-star-half-alt' : (item.ratingsAverage >= 4) ? 'fas fa-star' : 'far fa-star'"></i>
+
+                    <!-- 5 star  -->
+                    <i [class]="(item.ratingsAverage > 4 && item.ratingsAverage < 5) ? 'fas fa-star-half-alt' : (item.ratingsAverage >= 5) ? 'fas fa-star' : 'far fa-star'"></i>
+                  </p>
+                  <h6 class="text-black pb-2">{{item.ratingsAverage}}</h6>
+                </div>
+              </div>
+            </div>
+            </header>
+              <button type="button" class="main-btn w-75 m-auto mb-2" (click)="add(item._id , addBtn)" #addBtn>Add To Cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center py-4 fs-5 ">
+        <pagination-controls class="special-font fw-bold" id="products"
+                      (pageChange)="pageChanged($event)"
+                      (pageBoundsCorrection)="pageChanged($event)"
+                      [maxSize]="9"
+                      [directionLinks]="true"
+                      [autoHide]="true"
+                      [responsive]="true"
+                      previousLabel="Previous"
+                      nextLabel="Next"
+                      screenReaderPaginationLabel="Pagination"
+                      screenReaderPageLabel="page"
+                      screenReaderCurrentLabel="You're on page">
+        </pagination-controls>
+      </div>
+    </div>

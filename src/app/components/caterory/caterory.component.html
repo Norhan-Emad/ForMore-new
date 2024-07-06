@@ -1,0 +1,19 @@
+<section class="py-5" *ngIf="categoryObject.length>0">
+  <div class="category">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 py-3" *ngFor="let item of categoryObject">
+          <div class="card text-start">
+            <header>
+              <img class="card-img-top"[src]="item.image" alt="image"  width="100%" height="300px"/>
+            <div class="card-body">
+              <h4 class="card-title colorPer">{{item.name|cuttext:2}}</h4>
+              <p class="card-text text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque officiis perferendis soluta nobis esse distinctio nostrum at amet unde fugiat.</p>
+            </div>
+          </header>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

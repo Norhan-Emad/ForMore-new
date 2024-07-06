@@ -1,0 +1,38 @@
+<section class="py-5" *ngIf="wishObject !==null ; else wish">
+  <div class="container">
+    <div class="wish">
+      <div class="row d-flex justify-content-center align-items-center py-md-4" *ngFor="let item of wishObject">
+        <div class="col-md-2 bg-light">
+          <img [src]="item.imageCover" [alt]="item.title" width="100%" title="image">
+        </div>
+        <div class="col-md-8 bg-light">
+          <h3 class="special-font colorPink">{{item.title}}</h3>
+          <p class="colorPer">{{item.category.name}}</p>
+          <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a minus molestiae consequuntur voluptatum, perspiciatis ut est nisi quidem incidunt provident eveniet sequi labore explicabo aspernatur et iusto fugit nulla quos odio asperiores laudantium id doloremque vel? Dicta rerum, labore est unde tempora libero hic, veniam aut harum possimus reiciendis excepturi perspiciatis eius officia. Consectetur expedita quas temporibus quidem, repudiandae aut ratione minus eligendi soluta omnis adipisci nisi quod, cum obcaecati ipsum. Cupiditate quisquam labore pariatur laborum ab rerum corporis?</p>
+          <div class="row d-flex justify-content-between align-items-center">
+            <div class="col-md-4 ">
+              <h5 class="colorPink">Price: {{item.price | currency:' '}} EGP</h5>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+              <i class="fa-solid fa-star text-warning mx-2"></i>
+              <p class="mb-0 fs-5">{{item.ratingsAverage}}</p>
+            </div>
+            <div>
+              <button type="submit" class="gradBg text-white main-btn small" (click)="delete(item._id)" #deleteBtn>Remove Item <i class="fa-solid fa-trash mx-2"></i></button>
+            </div>
+            <div class="add d-flex justify-content-center align-items-center">
+              <button type="submit" class="main-btn fs-6 px-5 " (click)="addToCart(item._id)">Add To Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #wish>
+  <div class="container py-5 text-center">
+  <h2 class="colorPer fw-bold special-font">Your Wish List Is Empty .....</h2>
+  <button type="submit" class="main-btn my-3" routerLink="/products" >GO GET SOME PRODUCT</button>
+  </div>
+</ng-template>

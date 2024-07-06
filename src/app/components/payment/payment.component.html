@@ -1,0 +1,60 @@
+<section class="container pt-5 pb-5 ">
+  <div class="px-3 py-4 bgPer rounded-2 shadow w-75 mx-auto">
+    <h3 class="colorPink pb-2">Payment Details</h3>
+  <form [formGroup]="paymentDetails" >
+
+    <div class="mb-3">
+      <label for="details" class="form-label colorPink">Details</label>
+      <input
+        type="text"
+        class="form-control"
+        name="details"
+        id="details"
+        placeholder="details"
+        formControlName="details"/>
+
+        <div class="errors alert alert-danger" *ngIf="paymentDetails.get('details')?.errors && paymentDetails.get('details')?.touched">
+          <p *ngIf="paymentDetails.get('details')?.getError('required')">details is required</p>
+          <p *ngIf="paymentDetails.get('details')?.getError('minlength')">min length 4</p>
+          <p *ngIf="paymentDetails.get('details')?.getError('maxlength')">max length 40</p>
+        </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="text" class="form-label colorPink">City</label>
+      <input
+        type="text"
+        class="form-control"
+        name="city"
+        id="city"
+        placeholder="city"
+        formControlName="city"/>
+
+        <div class="errors alert alert-danger" *ngIf="paymentDetails.get('city')?.errors && paymentDetails.get('city')?.touched">
+          <p *ngIf="paymentDetails.get('city')?.getError('required')">city is required</p>
+          <p *ngIf="paymentDetails.get('city')?.getError('minlength')">min length 4</p>
+          <p *ngIf="paymentDetails.get('city')?.getError('maxlength')">max length 10</p>
+        </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="phone" class="form-label colorPink">Phone</label>
+      <input
+        type="tel"
+        class="form-control"
+        name="phone"
+        id="phone"
+        placeholder="phone"
+        formControlName="phone"/>
+
+        <div class="errors alert alert-danger" *ngIf="paymentDetails.get('phone')?.errors && paymentDetails.get('phone')?.touched">
+          <p *ngIf="paymentDetails.get('phone')?.getError('required')">phone is required</p>
+          <p *ngIf="paymentDetails.get('phone')?.getError('pattern')">invalid phone</p>
+        </div>
+    </div>
+
+    <button type="submit" class="main-btn my-2" [disabled]="paymentDetails.invalid" (click)="pay()">payment
+  </button>
+  </form>
+  </div>
+</section>

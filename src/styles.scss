@@ -1,0 +1,231 @@
+/* You can add global styles to this file, and also import other style files */
+
+//fonts///////
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Cinzel:wght@400..900&display=swap');
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+
+//global styles
+
+
+$mainColorPer:#6b00ca;
+$mainColorPink:#d20085;
+$backgroundColor:#fff5f5;
+
+body{
+  font-family:"Catamaran", sans-serif;
+};
+
+@media (min-width: 768px) {
+
+  body{
+    font-size: 60%;
+  }
+}
+
+@media (min-width: 992px) {
+
+  body{
+    font-size: 80%;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  body{
+    font-size: 100%;
+  }
+}
+
+@media (min-width: 1400px) {
+
+  body{
+    font-size: 100%;
+  }
+}
+
+
+html::-webkit-scrollbar{
+  width: .9375rem;
+};
+html::-webkit-scrollbar-track{
+  background-color: #6c00ca43;
+};
+html::-webkit-scrollbar-thumb{
+  background-color: $mainColorPink;
+  height: 15%;
+}
+ul{
+  list-style: none;
+};
+.special-font{
+  font-family:"Cinzel", serif;
+}
+.colorPer{
+  color: $mainColorPer;
+}
+.bgPer{
+  background-color: #6c00ca32;
+}
+.colorPink{
+  color: $mainColorPink;
+}
+.main-padding{
+  padding-block: 3.125rem;
+}
+
+.main-btn{
+  background-color: $mainColorPink;
+  color: #fff;
+  border-radius: 1.25rem;
+  padding: .625rem;
+  border: none;
+    &:disabled{
+    background-color: #d2008563;
+    color: #ffffff70;
+    }
+    &:hover{
+      box-shadow: 0rem 0rem .5rem $mainColorPink;
+    }
+    &:focus{
+      border: none;
+    }
+}
+
+.active-link{
+  background-color: $mainColorPink;
+  color: #fff !important;
+}
+
+.link{
+  text-decoration: none;
+  padding-inline: .625rem;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 0.625rem;
+  color: $mainColorPer;
+  margin-inline: .1875rem;
+  &:hover{
+    background-color: $mainColorPink;
+    color: #fff;
+    transition: 0.8s;
+  }
+}
+
+i{
+  cursor: pointer;
+}
+
+form input{
+  &:focus ,
+  &:hover ,
+  &::selection{
+    box-shadow: 0 0 .625rem $mainColorPink;
+    transition: 0.6s;
+  }
+}
+
+.form-control{
+  &:focus{
+    border: none;
+    box-shadow: 0 0 .625rem $mainColorPink;
+  }
+}
+
+.card{
+  padding: 10px;
+  height: 100%;
+  border: none;
+  box-shadow: 0 0 .625rem #d2008583;
+  cursor: pointer;
+}
+.shadow-card{
+  box-shadow: 0 0 .625rem #d2008583;
+}
+button{
+  border-color: green;
+  color: green;
+}
+button:disabled{
+  border-color: red;
+  color: red;
+}
+.gradBg{
+  background-image: linear-gradient(to left top, #6b00ca, #9600b7, #b200a5, #c50094, #d20085);
+}
+.cartIcon1{
+  position: absolute;
+  top: -30%;
+  right: -30%;
+}
+.cartIcon2{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+}
+.ngx-pagination .current {
+  padding: .1875rem .625rem;
+  background:$mainColorPink !important;
+  color: #fefefe;
+  cursor: default;
+  border-radius: 20px;
+}
+.navbar{
+  transition: 1s;
+}
+.bestSelling{
+  position: absolute;
+  top: .625rem;
+  left: -5%;
+  width: 180px;
+  height: 40px;
+  background-color:$mainColorPink ;
+  text-align: center;
+  font-family:"Cinzel", serif;
+  font-weight: bold;
+  border-radius:60% 100% 100% 50%;
+    ::after{
+      content: " ";
+      position: absolute;
+      top: .625rem;
+      left: 0;
+      width: 16px;
+      height: 40px;
+      background-color:$mainColorPink;
+      z-index: 30;
+      border-radius:50% 0%  0 60%;
+    }
+}
+
+ngx-spinner{
+  transition: 1s;
+}
+.wishList{
+  top: 5%;
+  right:5%;
+}
+.wish{
+  cursor: pointer;
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: $mainColorPink;
+}
+
+::selection {
+  color: white;
+  background: $mainColorPink;
+}
+
+.navbar-toggler {
+  color:$mainColorPink;
+  background-color: transparent;
+  border:none;
+        :focus{
+          box-shadow: 0 0 5px #d2008551;
+        }
+}
+

@@ -1,0 +1,25 @@
+:host{
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-padding{
+  padding-top: 65px;
+}
+.upButton{
+  position: fixed;
+  bottom: .625rem;
+  right: 10px;
+  z-index: 555;
+  border: none;
+  box-shadow: 0 0 .625rem #d20085;
+  background-color: white;
+  width: 55px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+
+}

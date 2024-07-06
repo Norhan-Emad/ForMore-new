@@ -1,0 +1,48 @@
+<section class="py-5" *ngIf="cartObject !==null ; else cart">
+  <div class="container">
+    <div class="cart">
+      <div class="row d-flex justify-content-center align-items-center py-md-4" *ngFor="let item of cartObject">
+        <div class="col-md-2 bg-light">
+          <img [src]="item.product.imageCover" [alt]="item.product.title" width="100%" title="image">
+        </div>
+        <div class="col-md-8 bg-light">
+          <h3 class="special-font colorPink">{{item.product.title}}</h3>
+          <p class="colorPer">{{item.product.category.name}}</p>
+          <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error a minus molestiae consequuntur voluptatum, perspiciatis ut est nisi quidem incidunt provident eveniet sequi labore explicabo aspernatur et iusto fugit nulla quos odio asperiores laudantium id doloremque vel? Dicta rerum, labore est unde tempora libero hic, veniam aut harum possimus reiciendis excepturi perspiciatis eius officia. Consectetur expedita quas temporibus quidem, repudiandae aut ratione minus eligendi soluta omnis adipisci nisi quod, cum obcaecati ipsum. Cupiditate quisquam labore pariatur laborum ab rerum corporis?</p>
+          <div class="row d-flex justify-content-between align-items-center">
+            <div class="col-md-4 ">
+              <h5 class="colorPink">Price: {{item.price | currency:' '}} EGP</h5>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center align-items-center">
+              <i class="fa-solid fa-star text-warning mx-2"></i>
+              <p class="mb-0 fs-5">{{item.product.ratingsAverage}}</p>
+            </div>
+            <div>
+              <button type="submit" class="gradBg text-white main-btn small" (click)="delete(item.product._id , deleteBtn)" #deleteBtn>Remove Item <i class="fa-solid fa-trash mx-2"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 d-flex justify-content-center align-items-center">
+          <button type="button" class="main-btn" title="button" (click)="minus(item.product._id , item.count , minusBtn , plusBtn)" #minusBtn><i class="fa-solid fa-minus"></i></button>
+          <p class="mb-0 mx-2 fs-4">{{item.count}}</p>
+          <button type="button" class="main-btn" title="button" (click)="plus(item.product._id , item.count , minusBtn , plusBtn)" #plusBtn><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+      <div class="total my-3">
+        <h3 class="colorPink"> ITEMS NUMBER : {{cartItemsNum}}</h3>
+        <h3 class="colorPink"> TOTAL PRICE : {{cartPrice | currency :' '}} EGP</h3>
+        <div class="buttons d-flex align-items-center py-3">
+          <button type="submit" class="btn btn-success fs-5" [routerLink]="['/payment' , cartId]">Pay Now</button>
+          <button type="submit" class="btn btn-outline-danger fs-5 mx-3" (click)="clear()">Clear Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #cart>
+  <div class="container py-5 text-center">
+  <h2 class="colorPer fw-bold special-font">Your Cart Is Empty .....</h2>
+  <button type="submit" class="main-btn my-3" routerLink="/products" >GO GET SOME PRODUCT</button>
+  </div>
+</ng-template>

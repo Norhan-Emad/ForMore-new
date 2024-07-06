@@ -1,0 +1,117 @@
+<section>
+  <div class="mainSlider mb-4 mt-2 position-relative">
+    <div class="row g-0 ">
+        <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide>
+            <img src="./assets/images/pexels-alexander-grey-3784440.jpg" alt="image"  height="600px">
+            <div class="content">
+              <h2 class="fw-bold py-2 special-font">OUR SPECIAL PRODUCTS</h2>
+              <p class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, rem amet. Architecto vero consectetur omnis cum esse maxime. Fugiat mollitia obcaecati doloribus sunt voluptatum sint sit est natus consectetur soluta deleniti eum iusto amet, ipsa iste rerum impedit vitae? Sed aliquid eos repellat quos vero tempora esse modi deleniti quia.</p>
+              <button type="button" class="main-btn" routerLink="/products">Know More</button>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <img src="./assets/images/pexels-designecologist-1779487.jpg" alt="image"  height="600px">
+            <div class="content">
+              <h2 class="fw-bold py-2 special-font">New Categories</h2>
+              <p class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, rem amet. Architecto vero consectetur omnis cum esse maxime. Fugiat mollitia obcaecati doloribus sunt voluptatum sint sit est natus consectetur soluta deleniti eum iusto amet, ipsa iste rerum impedit vitae? Sed aliquid eos repellat quos vero tempora esse modi deleniti quia.</p>
+              <button type="button" class="main-btn" routerLink="/category">Know More</button>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <img src="./assets/images/pexels-rajaalemnari-19620951.jpg" alt="image"  height="600px">
+            <div class="content">
+              <h2 class="fw-bold py-2 special-font">Magical Brands</h2>
+              <p class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, rem amet. Architecto vero consectetur omnis cum esse maxime. Fugiat mollitia obcaecati doloribus sunt voluptatum sint sit est natus consectetur soluta deleniti eum iusto amet, ipsa iste rerum impedit vitae? Sed aliquid eos repellat quos vero tempora esse modi deleniti quia.</p>
+              <button type="button" class="main-btn" routerLink="/brand">Know More</button>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <img src="./assets/images/pexels-dellamortphotography-693857.jpg" alt="image"  height="600px">
+            <div class="content">
+              <h2 class="fw-bold py-2 special-font">ALL YOU NEED IS HERE</h2>
+              <p class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, rem amet. Architecto vero consectetur omnis cum esse maxime. Fugiat mollitia obcaecati doloribus sunt voluptatum sint sit est natus consectetur soluta deleniti eum iusto amet, ipsa iste rerum impedit vitae? Sed aliquid eos repellat quos vero tempora esse modi deleniti quia.</p>
+              <button type="button" class="main-btn" routerLink="/products">Know More</button>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+      <!-- <div class="col-md-2 overflow-hidden">
+        <div class="row">
+          <img src="./assets/images/pexels-michelle-leman-6774347.jpg" alt="image" height="200px" class="px-0">
+        </div>
+        <div class="row">
+          <img src="./assets/images/pexels-michelle-leman-6774482.jpg" alt="image" height="200px" class="px-0">
+        </div>
+        <div class="row">
+          <img src="./assets/images/pexels-michelle-leman-6774877.jpg" alt="image" height="200px" class="px-0">
+        </div>
+      </div> -->
+  <!-- </div> -->
+</section>
+<section *ngIf="catData.length>0">
+  <div class="container-fluid">
+    <owl-carousel-o [options]="mainSliderOptions">
+      <ng-template carouselSlide *ngFor="let cat of catData">
+        <img [src]="cat.image" [alt]="cat.name" title="image" width="100%" height="200px"/>
+        <h3 class="text-center colorPink fs-5 special-font fw-bold py-3">{{cat.name}}</h3>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</section>
+<section *ngIf="productsData.length>0">
+  <div class="container">
+    <div class="row">
+      <h3 class="special-font py-3 colorPer fw-bold">Popular Products</h3>
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let item of productsData | slice :2:14">
+          <div class="card text-start">
+            <div class="wishList position-absolute" *ngIf="wishArray.includes(item._id) else wish">
+              <i class="fa-regular fa-heart fs-3 colorPink" (click)="addToWish(item._id , whiteHeart,redHeart)" hidden #whiteHeart></i>
+              <i class="fa-solid fa-heart fs-3 colorPink"  (click)="removeWish(item._id , whiteHeart ,redHeart)" #redHeart></i>
+            </div>
+            <ng-template #wish>
+              <div class="wishList position-absolute">
+                <i class="fa-regular fa-heart fs-3 colorPink" (click)="addToWish(item._id , whiteHeart,redHeart)" #whiteHeart></i>
+              <i class="fa-solid fa-heart fs-3 colorPink"  (click)="removeWish(item._id , whiteHeart ,redHeart)"hidden #redHeart></i>
+              </div>
+            </ng-template>
+            <!-- //best selling products -->
+            <div class="bestSelling position-absolute d-flex justify-content-center align-items-center" *ngIf="item.ratingsAverage>=4.5">
+              <h4 class="my-0 text-white">best selling</h4>
+            </div>
+            <header [routerLink]="['/productDetails' , item._id]">
+              <img class="card-img-top"[src]="item.imageCover" alt="image"  width="100%"/>
+            <div class="card-body">
+              <h4 class="card-title colorPer">{{item.title|cuttext:2}}</h4>
+              <p class="card-text text-muted">{{item.description | cuttext :3}}</p>
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-6">
+                  <p class="fs-5"> {{item.price | currency: ' '}} EGP</p>
+                </div>
+                <div class="col-md-6 text-warning d-flex justify-content-between align-items-center">
+                  <p><i [class]="(item.ratingsAverage == 0) ? 'far fa-star' : (item.ratingsAverage > 0 && item.ratingsAverage < 1) ? 'fas fa-star-half-alt' : 'fas fa-star'"></i>
+
+                    <!-- 2 star  -->
+                    <i [class]="(item.ratingsAverage > 1 && item.ratingsAverage < 2) ? 'fas fa-star-half-alt' : (item.ratingsAverage >= 2) ? 'fas fa-star' : 'far fa-star'"></i>
+
+                    <!-- 3 star  -->
+                    <i [class]="(item.ratingsAverage > 2 && item.ratingsAverage < 3) ? 'fas fa-star-half-alt' : (item.ratingsAverage >= 3) ? 'fas fa-star' : 'far fa-star'"></i>
+
+                    <!-- 4 star  -->
+                    <i [class]="(item.ratingsAverage > 3 && item.ratingsAverage < 4) ? 'fas fa-star-half-alt' : (item.ratingsAverage >= 4) ? 'fas fa-star' : 'far fa-star'"></i>
+
+                    <!-- 5 star  -->
+                    <i [class]="(item.ratingsAverage > 4 && item.ratingsAverage < 5) ? 'fas fa-star-half-alt' : (item.ratingsAverage >= 5) ? 'fas fa-star' : 'far fa-star'"></i>
+                  </p>
+                  <h6 class="text-black pb-2">{{item.ratingsAverage}}</h6>
+                </div>
+              </div>
+            </div>
+            </header>
+              <button type="button" class="main-btn w-75 m-auto mb-2" (click)="add(item._id , addBtn)" #addBtn>Add To Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
